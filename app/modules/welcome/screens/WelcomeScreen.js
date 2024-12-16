@@ -1,18 +1,17 @@
 // app/welcome.tsx
-import { View, Text, StyleSheet, Image, Pressable } from 'react-native';
+import { View, Text, StyleSheet, Image } from 'react-native';
 import { Link } from 'expo-router';
 // 引入logo.svg 图标
-import logomarkIcon from '../../../assets/icons/Logomark.svg';
-import StartedButton from '../../../components/button/confimedButton';
+import Logomark from '../../../assets/icons/logoMark';
+import ConfirmedButton from '../../../components/button/confirmedButtion';
+
 // 默认导出WelcomeScreen组件给外部使用
 export default function WelcomeScreen() {
   return (
     <View style={styles.container}>
       {/* Logo样式部分 Logo Section */}
       <View style={styles.logoSection}>
-        <View style={styles.logoCircle}>
-          <Image source={logomarkIcon} style={styles.logoCircle} />
-        </View>
+          <Logomark />
       </View>
 
       {/* 欢迎词Title Section */}
@@ -21,7 +20,7 @@ export default function WelcomeScreen() {
       <Text style={styles.welcomeToTheContainer}>
         <Text style={styles.welcomeToThe}>{`Welcome to `}</Text>
         <Text style={styles.sync}>{`SYNC\n`}</Text>
-        <Text style={styles.welcomeToThe}> AI coach companion!</Text>
+        <Text style={styles.welcomeToThe}> AI coach companion</Text>
       </Text>
 
 
@@ -38,7 +37,7 @@ export default function WelcomeScreen() {
 
       {/* Action Buttons */}
       <Link href="/modules/healthAssessment/screens/InfoScreen" asChild>
-        <StartedButton label="Get Started"></StartedButton>
+        <ConfirmedButton label="Get Started"  ></ConfirmedButton>
       </Link>
 
       {/* Sign In Link */}
@@ -62,19 +61,11 @@ const styles = StyleSheet.create({
   logoSection: {
     marginBottom: 24,
   },
-  logoCircle: {
-    width: 40,
-    height: 40,
-    backgroundColor: '#4f3422', // Brown color from design
-    borderRadius: 20,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
   welcomeToThe: {
     color: "#4f3422"
   },
   sync: {
-    color: "#926247"
+    color: "#EB5C1F"
   },
   welcomeToTheContainer: {
     alignSelf: "stretch",

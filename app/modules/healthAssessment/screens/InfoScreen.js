@@ -4,6 +4,7 @@ import { View, Text, TextInput, Image, StyleSheet, Pressable } from 'react-nativ
 import { Link } from 'expo-router';
 import Slider from '@react-native-community/slider'; // 导入 Slider（没有导入滑条的时候会静止吗？）
 import InputSlider from '../../../components/InputSlider';
+import ConfirmedButton from '../../../components/button/confirmedButtion';
 export default function InfoScreen() {
   const [fullName, setFullName] = useState('');
   const [weight, setWeight] = useState(65);
@@ -77,9 +78,7 @@ export default function InfoScreen() {
 
       {/* Continue Button */}
       <Link href="/modules/healthAssessment/screens/GoalScreen" asChild>
-        <Pressable style={styles.continueButton}>
-          <Text style={styles.continueButtonText}>Continue →</Text>
-        </Pressable>
+        <ConfirmedButton label="Continue" ></ConfirmedButton>
       </Link>
     </View>
   );
