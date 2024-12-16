@@ -1,15 +1,20 @@
 import * as React from "react";
-import { Text, StyleSheet, Image, View } from "react-native";
+import { Text, StyleSheet, Image, View, Pressable } from "react-native";
 import MonotoneArrowRightSm from "../../assets/icons/Monotone arrow right sm.svg";
-const StartedButton = ({ children }) => {
+
+const StartedButton = React.forwardRef(({ label, ...props }, ref) => {
   return (
-    <View style={[styles.buttonPrimaryIcon, styles.contentFlexBox]}>
+    <Pressable ref={ref} {...props} style={[styles.buttonPrimaryIcon, styles.contentFlexBox]}>
       <View style={[styles.content, styles.contentFlexBox]}>
-        <Text style={styles.text}>{children}</Text>
+        <Text style={styles.text}>
+          {label || 'Confirm'}
+        </Text>
         <MonotoneArrowRightSm width={24} height={24} viewBox="0 0 24 24" fill="none" />
       </View>
-    </View>);
-};
+    </Pressable>
+  );
+});
+
 const styles = StyleSheet.create({
   contentFlexBox: {
     justifyContent: "center",
@@ -21,8 +26,8 @@ const styles = StyleSheet.create({
     letterSpacing: -0.1,
     fontWeight: "800",
     fontFamily: "Urbanist-ExtraBold",
-    color: "#fff",
-    textAlign: "left"
+    textAlign: "left",
+    color: "#ffffff"
   },
 
   content: {
@@ -37,4 +42,5 @@ const styles = StyleSheet.create({
     paddingVertical: 16
   }
 });
+
 export default StartedButton;

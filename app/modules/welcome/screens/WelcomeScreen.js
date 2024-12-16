@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, Image, Pressable } from 'react-native';
 import { Link } from 'expo-router';
 // 引入logo.svg 图标
 import logomarkIcon from '../../../assets/icons/Logomark.svg';
-import StartedButton from '../../../components/button/startedButton';
+import StartedButton from '../../../components/button/confimedButton';
 // 默认导出WelcomeScreen组件给外部使用
 export default function WelcomeScreen() {
   return (
@@ -38,7 +38,7 @@ export default function WelcomeScreen() {
 
       {/* Action Buttons */}
       <Link href="/modules/healthAssessment/screens/InfoScreen" asChild>
-        <StartedButton>Get Started →</StartedButton>
+        <StartedButton label="Get Started"></StartedButton>
       </Link>
 
       {/* Sign In Link */}
