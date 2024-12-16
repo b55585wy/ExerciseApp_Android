@@ -2,7 +2,8 @@
 import { View, Text, StyleSheet, Image, Pressable } from 'react-native';
 import { Link } from 'expo-router';
 // 引入logo.svg 图标
-import logomarkIcon from '../../../assets/images/Logomark.svg';
+import logomarkIcon from '../../../assets/icons/Logomark.svg';
+import StartedButton from '../../../components/button/startedButton';
 // 默认导出WelcomeScreen组件给外部使用
 export default function WelcomeScreen() {
   return (
@@ -15,8 +16,14 @@ export default function WelcomeScreen() {
       </View>
 
       {/* 欢迎词Title Section */}
-      <Text style={styles.title}>Welcome to the ultimate</Text>
-      <Text style={styles.subtitle}>AI coach companion!</Text>
+
+
+      <Text style={styles.welcomeToTheContainer}>
+        <Text style={styles.welcomeToThe}>{`Welcome to `}</Text>
+        <Text style={styles.sync}>{`SYNC\n`}</Text>
+        <Text style={styles.welcomeToThe}> AI coach companion!</Text>
+      </Text>
+
 
       {/* 产品介绍Description */}
       <Text style={styles.description}>
@@ -31,9 +38,7 @@ export default function WelcomeScreen() {
 
       {/* Action Buttons */}
       <Link href="/modules/healthAssessment/screens/InfoScreen" asChild>
-        <Pressable style={styles.getStartedButton}>
-          <Text style={styles.buttonText}>Get Started →</Text>
-        </Pressable>
+        <StartedButton>Get Started →</StartedButton>
       </Link>
 
       {/* Sign In Link */}
@@ -49,7 +54,6 @@ export default function WelcomeScreen() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: '#FFF',
     paddingHorizontal: 20,
     paddingTop: 60,
@@ -61,23 +65,25 @@ const styles = StyleSheet.create({
   logoCircle: {
     width: 40,
     height: 40,
-    backgroundColor: '#4A321F', // Brown color from design
+    backgroundColor: '#4f3422', // Brown color from design
     borderRadius: 20,
     justifyContent: 'center',
     alignItems: 'center',
   },
-  title: {
-    fontSize: 24,
-    fontWeight: '600',
-    color: '#4A321F',
-    textAlign: 'center',
+  welcomeToThe: {
+    color: "#4f3422"
   },
-  subtitle: {
-    fontSize: 24,
-    fontWeight: '600',
-    color: '#946E51', // Lighter brown
-    textAlign: 'center',
-    marginBottom: 12,
+  sync: {
+    color: "#926247"
+  },
+  welcomeToTheContainer: {
+    alignSelf: "stretch",
+    fontSize: 30,
+    letterSpacing: -0.3,
+    lineHeight: 38,
+    fontWeight: "800",
+    fontFamily: "Urbanist-ExtraBold",
+    textAlign: "center"
   },
   description: {
     fontSize: 16,
@@ -85,6 +91,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginBottom: 32,
   },
+  // 产品介绍Description图片
   illustrationContainer: {
     width: '100%',
     height: 300,
@@ -92,20 +99,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 32,
   },
-  getStartedButton: {
-    backgroundColor: '#4A321F',
-    paddingVertical: 16,
-    paddingHorizontal: 24,
-    borderRadius: 25,
-    width: '100%',
-    alignItems: 'center',
-    marginBottom: 16,
-  },
-  buttonText: {
-    color: '#FFF',
-    fontSize: 16,
-    fontWeight: '600',
-  },
+  // 登录链接
   signInContainer: {
     flexDirection: 'row',
     alignItems: 'center',

@@ -1,7 +1,7 @@
 // app/components/InputSlider/index.js
 import * as React from "react";
 import { Text, StyleSheet, View } from "react-native";
-import LinearGradient from "react-native-linear-gradient";
+import LinearGradient from "expo-linear-gradient";
 
 const InputSlider = ({ value = 65, onValueChange }) => {
   return (

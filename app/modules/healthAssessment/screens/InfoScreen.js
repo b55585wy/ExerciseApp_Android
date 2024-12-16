@@ -62,8 +62,8 @@ export default function InfoScreen() {
 
         <Text style={styles.label}>Gender</Text>
         <Pressable style={styles.selector}>
-          <Text style={styles.selectorIcon}>⚧</Text>
-          <Text style={styles.selectorText}>Trans Female</Text>
+          <Text style={styles.selectorIcon}>♀  </Text>
+          <Text style={styles.selectorText}>Female</Text>
           <Text style={styles.selectorArrow}>▼</Text>
         </Pressable>
 
