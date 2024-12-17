@@ -1,9 +1,9 @@
 import React from "react";
-import { Link } from "expo-router";
+import { colors } from "../../assets/themes/color";
 //引入view组件
-import { Pressable, Text,StyleSheet, View } from "react-native";
+import { Pressable, Text, StyleSheet, View } from "react-native";
 //forwardRef的用法：
-const ConfirmedButton = React.forwardRef(({ label, icon=null, ...props }, ref) => {
+const ConfirmedButton = React.forwardRef(({ label, icon = null, ...props }, ref) => {
   return (
     <Pressable ref={ref} {...props} style={[styles.confirmedButton]}>
       <Text style={styles.confirmedButtonText}>{label || 'Confirm'}</Text>
@@ -15,7 +15,8 @@ const ConfirmedButton = React.forwardRef(({ label, icon=null, ...props }, ref) =
 // 以及在样式表中使用常量，可以提高性能。
 const styles = StyleSheet.create({
   confirmedButton: {
-    backgroundColor: '#4A321F',
+    // backgroundColor: '#4A321F',
+    backgroundColor: colors.primary,
     margin: 20,
     padding: 16,
     borderRadius: 25,

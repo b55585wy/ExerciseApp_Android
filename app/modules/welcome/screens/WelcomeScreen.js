@@ -4,14 +4,16 @@ import { Link } from 'expo-router';
 // 引入logo.svg 图标
 import Logomark from '../../../assets/icons/logoMark';
 import ConfirmedButton from '../../../components/button/confirmedButtion';
-
+import { colors } from '../../../assets/themes/color';
+import { typography } from '../../../assets/themes/typography';
 // 默认导出WelcomeScreen组件给外部使用
 export default function WelcomeScreen() {
   return (
+
     <View style={styles.container}>
       {/* Logo样式部分 Logo Section */}
       <View style={styles.logoSection}>
-          <Logomark />
+        <Logomark />
       </View>
 
       {/* 欢迎词Title Section */}
@@ -33,17 +35,22 @@ export default function WelcomeScreen() {
       <View style={styles.illustrationContainer}>
         {/* Green character illustration */}
         {/* Floating icons */}
+        <Image
+          source={require('../../../assets/images/AI-robot-group.png')}
+          style={styles.airobotImage}
+          resizeMode="contain"  // 或使用 "cover" 或 "stretch"
+        />
       </View>
 
       {/* Action Buttons */}
-      <Link href="/modules/healthAssessment/screens/InfoScreen" asChild>
-        <ConfirmedButton label="Get Started"  ></ConfirmedButton>
+      <Link href="/modules/auth/screens/SignUpScreen" asChild>
+        <ConfirmedButton label="Get Started "  ></ConfirmedButton>
       </Link>
 
       {/* Sign In Link */}
       <View style={styles.signInContainer}>
         <Text style={styles.signInText}>Already have an account? </Text>
-        <Link href="/modules/main/screens/HomeScreen">
+        <Link href="/modules/auth/screens/SignInScreen">
           <Text style={styles.signInLink}>Sign In</Text>
         </Link>
       </View>
@@ -53,7 +60,9 @@ export default function WelcomeScreen() {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#FFF',
+    // 设置容器为全屏，避免出现白边
+    flex: 1,
+    backgroundColor: colors.background.primary,
     paddingHorizontal: 20,
     paddingTop: 60,
     alignItems: 'center',
@@ -62,14 +71,14 @@ const styles = StyleSheet.create({
     marginBottom: 24,
   },
   welcomeToThe: {
-    color: "#4f3422"
+    color: colors.text.primary
   },
   sync: {
-    color: "#EB5C1F"
+    color: colors.primary
   },
   welcomeToTheContainer: {
     alignSelf: "stretch",
-    fontSize: 30,
+    fontSize: typography.presets.h1.fontSize,
     letterSpacing: -0.3,
     lineHeight: 38,
     fontWeight: "800",
@@ -77,8 +86,8 @@ const styles = StyleSheet.create({
     textAlign: "center"
   },
   description: {
-    fontSize: 16,
-    color: '#666',
+    fontSize: typography.presets.body.fontSize,
+    color: colors.text.secondary,
     textAlign: 'center',
     marginBottom: 32,
   },
@@ -90,18 +99,23 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 32,
   },
+  airobotImage: {
+    width: '100%',
+    height: '100%',
+  },
   // 登录链接
   signInContainer: {
     flexDirection: 'row',
     alignItems: 'center',
   },
   signInText: {
-    color: '#666',
-    fontSize: 14,
+    color: colors.text.primary,
+    fontSize: typography.presets.bodySmall.fontSize,
   },
   signInLink: {
-    color: '#946E51',
-    fontSize: 14,
-    fontWeight: '600',
+    // color: '#946E51',
+    color: colors.accent.primary,
+    fontSize: typography.presets.bodySmallBold.fontSize,
+    fontWeight: typography.presets.bodySmallBold.fontWeight,
   },
 });
