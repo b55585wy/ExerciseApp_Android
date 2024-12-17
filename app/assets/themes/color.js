@@ -1,4 +1,4 @@
-export const colors = {
+const colors = {
   primary: '#EB5C1F',      // primary-100 主色调
   primaryLight: '#ff8d4e', // primary-200 较亮的主色调
   primaryLighter: '#fff4ad', // primary-300 最亮的主色调
@@ -17,5 +17,4 @@ export const colors = {
     tertiary: '#c4c4c4',   // bg-300 第三级背景色
   },
 };
-
 export default colors;

@@ -1,8 +1,8 @@
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView, Pressable } from 'react-native';
 import { FontAwesome5 } from '@expo/vector-icons';
-import colors from '../../../assets/themes/color';
-import { typography } from '../../../assets/themes/typography';
+import colors from '../../assets/themes/color';
+import typography from '../../assets/themes/typography';
 
 export default function HomeScreen() {
   return (

@@ -4,8 +4,8 @@ import { Link } from 'expo-router';
 // 引入logo.svg 图标
 import Logomark from '../../../assets/icons/logoMark';
 import ConfirmedButton from '../../../components/button/confirmedButtion';
-import { colors } from '../../../assets/themes/color';
-import { typography } from '../../../assets/themes/typography';
+import colors from '../../../assets/themes/color';
+import typography from '../../../assets/themes/typography';
 // 默认导出WelcomeScreen组件给外部使用
 export default function WelcomeScreen() {
   return (

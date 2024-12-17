@@ -12,11 +12,11 @@ export default function MainLayout() {
           borderTopWidth: 1,
           borderTopColor: '#E0E0E0',
         },
-        animation: 'slide_from_right',
+        headerShown: false
       }}>
       
       <Tabs.Screen
-        name="screens/HomeScreen"
+        name="index"
         options={{
           title: '首页',
           tabBarIcon: ({ color }) => (
@@ -26,7 +26,7 @@ export default function MainLayout() {
       />
 
       <Tabs.Screen
-        name="screens/ChatbotScreen"
+        name="chatbot"
         options={{
           title: '对话',
           tabBarIcon: ({ color }) => (
@@ -36,7 +36,7 @@ export default function MainLayout() {
       />
 
       <Tabs.Screen
-        name="screens/StatisticScreen"
+        name="statistics"
         options={{
           title: '统计',
           tabBarIcon: ({ color }) => (
@@ -46,7 +46,7 @@ export default function MainLayout() {
       />
 
       <Tabs.Screen
-        name="screens/InfoScreen"
+        name="info"
         options={{
           title: '我的',
           tabBarIcon: ({ color }) => (

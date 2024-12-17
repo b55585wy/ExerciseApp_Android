@@ -1,4 +1,4 @@
-export const typography = {
+const typography = {
   // 字体家族
   fonts: {
     regular: 'System',  // 或其他自定义字体
@@ -67,3 +67,5 @@ export const typography = {
     },
   }
 };
+
+export default typography;
