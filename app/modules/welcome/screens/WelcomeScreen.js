@@ -50,7 +50,7 @@ export default function WelcomeScreen() {
       {/* Sign In Link */}
       <View style={styles.signInContainer}>
         <Text style={styles.signInText}>Already have an account? </Text>
-        <Link href="/modules/auth/screens/SignInScreen">
+        <Link href="/modules/auth/screens/SignInScreen" asChild >
           <Text style={styles.signInLink}>Sign In</Text>
         </Link>
       </View>

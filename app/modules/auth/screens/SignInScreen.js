@@ -10,11 +10,23 @@
 // 不会触发组件重渲染
 // 适合存储动画值这类不需要触发重渲染的数据
 
-import React, { useState, useEffect,  useRef } from 'react';
-import { View, Text, TextInput, StyleSheet, Pressable, Animated,Alert } from 'react-native';
-import { Link } from 'expo-router';
+// Link和router适用情况：
+// Link:
+// 菜单项
+// 导航按钮
+// 底部标签栏
+// router:
+// 登录成功后跳转
+// 表单提交后导航
+// 条件判断后的路由跳转
+
+//await AsyncStorage.clear(); 清除测试账号数据
+
+import React, { useState, useEffect, useRef } from 'react';
+import { View, Text, TextInput, StyleSheet, Pressable, Animated, Alert } from 'react-native';
+import { Link, router } from 'expo-router';
 import ConfirmedButton from '../../../components/button/confirmedButtion';
-import { colors } from '../../../assets/themes/color';
+import colors from '../../../assets/themes/color';
 import Logomark from '../../../assets/icons/logoMark';
 import { typography } from '../../../assets/themes/typography';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -102,28 +114,28 @@ export default function SignInScreen() {
   // 进行本地登陆验证，使用asyncstorage来进行存储和验证本地登陆信息
   const handleSignIn = async () => {
     try {
-      //设置登陆状态按钮为繁忙
       setLoading(true);
-      //获取本地存储的邮箱和密码
       const storedUsers = await AsyncStorage.getItem('users');
       const users = storedUsers ? JSON.parse(storedUsers) : [];
 
-      //查找匹配的用户
-      // u
       const user = users.find(u => u.email === email && u.password === password);
       if (user) {
-        // await AsyncStorage.setItem('currentUser', JSON.stringify(user));
-        // router.replace('/(tabs)'); // 导航到主页面
-      }
-      else {
-        Alert.alert('Invalid email or password');
+        // 存储当前用户信息和登录状态
+        await AsyncStorage.setItem('currentUser', JSON.stringify({
+          ...user,
+          lastLoginAt: new Date().toISOString()
+        }));
+        router.replace('/modules/main/screens/HomeScreen');
+      } else {
+        Alert.alert('Error', 'Invalid email or password');
       }
     } catch (error) {
       console.error('Sign in error:', error);
+      Alert.alert('Error', 'Login failed');
     } finally {
       setLoading(false);
     }
-  }
+  };
 
   return (
     <View style={styles.container}>
@@ -197,7 +209,7 @@ export default function SignInScreen() {
         <Animated.View style={[styles.bottomLinks, fadeStyle]}>
           <Text style={styles.bottomText}>
             Don't have an account?{' '}
-            <Link href="/modules/auth/screens/SignUpScreen" style={styles.link}>
+            <Link href="./SignUpScreen" replace={true} style={styles.link}>
               Sign Up
             </Link>
           </Text>
@@ -231,13 +243,13 @@ const styles = StyleSheet.create({
     fontSize: typography.presets.h1.fontSize,
     fontWeight: typography.presets.h1.fontWeight,
     color: colors.text.primary, // bg-100
-  },
-  titleContainer: {
     letterSpacing: -0.3,
     lineHeight: 38,
-    fontWeight: "800",
     fontFamily: "Urbanist-ExtraBold",
     textAlign: "center",
+    // textAlign 属性控制的是文本内容在其容器内的对齐方式
+  },
+  titleContainer: {
     margin: 20,
   },
   formContainer: {
@@ -292,7 +304,7 @@ const styles = StyleSheet.create({
     gap: 12,
   },
   bottomText: {
-    color: colors.text.secondary, // text-200
+    // color: colors.text.secondary, // text-200
     fontSize: typography.presets.bodySmall.fontSize,
   },
   link: {
