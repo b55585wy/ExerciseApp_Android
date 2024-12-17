@@ -28,7 +28,7 @@ export default function WelcomeScreen() {
 
       {/* 产品介绍Description */}
       <Text style={styles.description}>
-        Your AI breathing companion for everyone, anywhere 🌱
+        Your AI breathing companion{'\n'} for everyone, anywhere 🌱
       </Text>
 
       {/* Main Illustration */}
@@ -109,13 +109,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   signInText: {
-    color: colors.text.primary,
-    fontSize: typography.presets.bodySmall.fontSize,
+    fontSize: typography.presets.bodySmallBold.fontSize,
   },
   signInLink: {
     // color: '#946E51',
-    color: colors.accent.primary,
     fontSize: typography.presets.bodySmallBold.fontSize,
-    fontWeight: typography.presets.bodySmallBold.fontWeight,
+    color: colors.primary,
+    textDecorationLine: 'underline',
   },
 });

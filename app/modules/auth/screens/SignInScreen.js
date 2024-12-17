@@ -1,37 +1,74 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, StyleSheet, Pressable, Animated } from 'react-native';
+// 进行本地登陆验证，使用asyncstorage来进行存储和验证本地登陆信息
+// SecureStore 实际上比 AsyncStorage 更安全，因为它会使用设备的安全存储机制来保存数据。不过要注意，SecureStore 在 Web 环境中不可用，如果您的应用需要支持 Web 平台，那么还是需要解决 AsyncStorage 的安装问题
+
+// 使用useRef来初始化动画但是在输入账号密码的时候出现了白屏
+// 原因如下：动画初始化时机：
+// 在之前的代码中，动画值可能在组件完全加载前就开始执行
+// 新代码中使用 useRef 和 useEffect 确保了动画值在组件挂载后才开始初始化和执行
+// 为什么要用 useRef：
+// 保持值的持久性（在重渲染之间保持不变）
+// 不会触发组件重渲染
+// 适合存储动画值这类不需要触发重渲染的数据
+
+import React, { useState, useEffect,  useRef } from 'react';
+import { View, Text, TextInput, StyleSheet, Pressable, Animated,Alert } from 'react-native';
 import { Link } from 'expo-router';
 import ConfirmedButton from '../../../components/button/confirmedButtion';
 import { colors } from '../../../assets/themes/color';
 import Logomark from '../../../assets/icons/logoMark';
 import { typography } from '../../../assets/themes/typography';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 export default function SignInScreen() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
 
-  const headerAnimation = new Animated.Value(0);
-  const formAnimation = new Animated.Value(0);
-  const fadeAnimation = new Animated.Value(0);
+  // 修改动画初始化方式
+  const headerAnimation = useRef(new Animated.Value(0)).current;
+  const formAnimation = useRef(new Animated.Value(0)).current;
+  const fadeAnimation = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
-    Animated.sequence([
-      Animated.timing(headerAnimation, {
-        toValue: 1,
-        duration: 800,
-        useNativeDriver: true,
-      }),
-      Animated.timing(formAnimation, {
-        toValue: 1,
-        duration: 600,
-        useNativeDriver: true,
-      }),
-      Animated.timing(fadeAnimation, {
-        toValue: 1,
-        duration: 400,
-        useNativeDriver: true,
-      }),
-    ]).start();
+    // 使用更安全的动画序列
+    const startAnimations = () => {
+      Animated.sequence([
+        Animated.timing(headerAnimation, {
+          toValue: 1,
+          duration: 500,
+          useNativeDriver: true,
+        }),
+        Animated.timing(formAnimation, {
+          toValue: 1,
+          duration: 200,
+          useNativeDriver: true,
+        }),
+        Animated.timing(fadeAnimation, {
+          toValue: 1,
+          duration: 200,
+          useNativeDriver: true,
+        }),
+      ]).start();
+    };
+
+    startAnimations();
   }, []);
+
+  // 修改输入处理函数
+  const handleEmailChange = (text) => {
+    try {
+      setEmail(text);
+    } catch (error) {
+      console.log('Email input error:', error);
+    }
+  };
+
+  const handlePasswordChange = (text) => {
+    try {
+      setPassword(text);
+    } catch (error) {
+      console.log('Password input error:', error);
+    }
+  };
 
   const headerStyle = {
     transform: [
@@ -61,18 +98,47 @@ export default function SignInScreen() {
     opacity: fadeAnimation,
   };
 
+
+  // 进行本地登陆验证，使用asyncstorage来进行存储和验证本地登陆信息
+  const handleSignIn = async () => {
+    try {
+      //设置登陆状态按钮为繁忙
+      setLoading(true);
+      //获取本地存储的邮箱和密码
+      const storedUsers = await AsyncStorage.getItem('users');
+      const users = storedUsers ? JSON.parse(storedUsers) : [];
+
+      //查找匹配的用户
+      // u
+      const user = users.find(u => u.email === email && u.password === password);
+      if (user) {
+        // await AsyncStorage.setItem('currentUser', JSON.stringify(user));
+        // router.replace('/(tabs)'); // 导航到主页面
+      }
+      else {
+        Alert.alert('Invalid email or password');
+      }
+    } catch (error) {
+      console.error('Sign in error:', error);
+    } finally {
+      setLoading(false);
+    }
+  }
+
   return (
     <View style={styles.container}>
       {/* Logo Section */}
       <Animated.View style={[styles.header, headerStyle]}>
-        <View style={{marginBottom: 20}}>
+        <View style={{ marginBottom: 20 }}>
           {/* Your Logo Component */}
           <Logomark width={50} />
         </View>
-        
+
       </Animated.View>
-      <Text style={styles.title}>Sign In</Text>
-      
+      <View style={styles.titleContainer}>
+        <Text style={styles.title}>Sign In</Text>
+      </View>
+
       {/* Form Section */}
       <Animated.View style={[styles.formContainer, formStyle]}>
         <View style={styles.inputGroup}>
@@ -82,7 +148,7 @@ export default function SignInScreen() {
             <TextInput
               style={styles.input}
               value={email}
-              onChangeText={setEmail}
+              onChangeText={handleEmailChange}
               placeholder="Enter your email"
               keyboardType="email-address"
               autoCapitalize="none"
@@ -97,7 +163,7 @@ export default function SignInScreen() {
             <TextInput
               style={styles.input}
               value={password}
-              onChangeText={setPassword}
+              onChangeText={handlePasswordChange}
               placeholder="Enter your password"
               secureTextEntry
             />
@@ -107,8 +173,10 @@ export default function SignInScreen() {
         {/* Sign In Button with animation */}
         <Animated.View style={fadeStyle}>
           <ConfirmedButton
-            label="Sign In →"
-            onPress={() => {/* 处理登录逻辑 */ }}
+            // label="Sign In →"
+            label={loading ? 'Loading...' : 'Sign In '}
+            onPress={handleSignIn}
+            disabled={loading}
           />
         </Animated.View>
 
@@ -129,7 +197,7 @@ export default function SignInScreen() {
         <Animated.View style={[styles.bottomLinks, fadeStyle]}>
           <Text style={styles.bottomText}>
             Don't have an account?{' '}
-            <Link href="/signup" style={styles.link}>
+            <Link href="/modules/auth/screens/SignUpScreen" style={styles.link}>
               Sign Up
             </Link>
           </Text>
@@ -154,16 +222,23 @@ const styles = StyleSheet.create({
     width: '100%',
     borderBottomLeftRadius: '25%',
     borderBottomRightRadius: '25%',
-    marginBottom: 80,
     justifyContent: 'center',
     alignItems: 'center',
     padding: 0,
   },
-  
+
   title: {
     fontSize: typography.presets.h1.fontSize,
     fontWeight: typography.presets.h1.fontWeight,
-    color: colors.background.primary, // bg-100
+    color: colors.text.primary, // bg-100
+  },
+  titleContainer: {
+    letterSpacing: -0.3,
+    lineHeight: 38,
+    fontWeight: "800",
+    fontFamily: "Urbanist-ExtraBold",
+    textAlign: "center",
+    margin: 20,
   },
   formContainer: {
     flex: 1,
@@ -226,6 +301,6 @@ const styles = StyleSheet.create({
   },
   forgotPassword: {
     marginTop: 8,
-  }
+  },
 
 });

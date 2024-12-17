@@ -21,12 +21,12 @@ export const SplashScreen = () => {
   useEffect(() => {
     // 启动动画序列
     // 1. logo淡入动画
-    opacity.value = withTiming(1, { duration: 500 });
+    opacity.value = withTiming(1, { duration: 1000 });
     // 2. logo从上方弹入
     translateY.value = withSpring(0, {
-      damping: 8,      // 阻尼系数
-      stiffness: 100,  // 刚度
-      mass: 1,         // 质量
+      damping: 8,      // 阻尼：控制弹簧的"阻力"，值越大，弹性越小，动画越快停止
+      stiffness: 100,  // 刚度：控制弹簧的"紧实度"，值越大，弹簧力越强，动画越快
+      mass: 1,         // 质量：影响动画的惯性，值越大，动画越慢，弹性效果越明显
     });
 
     // 3. "SYNC"文字的弹跳动画
@@ -81,7 +81,7 @@ export const SplashScreen = () => {
         </Animated.Text>
 
         <Animated.Text style={[styles.description, subtitleAnimatedStyle]}>
-        Your AI breathing companion for everyone, anywhere 🌱
+          Your AI breathing companion{'\n'} for everyone, anywhere 🌱
         </Animated.Text>
       </View>
     </View>
@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
     color: colors.text.secondary,
     marginTop: 8,
     fontWeight: typography.presets.bodySmallBold.fontWeight,
-  
+
   },
 
   welcomeToThe: {

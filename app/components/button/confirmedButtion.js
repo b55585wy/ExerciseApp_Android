@@ -16,7 +16,7 @@ const ConfirmedButton = React.forwardRef(({ label, icon = null, ...props }, ref)
 const styles = StyleSheet.create({
   confirmedButton: {
     // backgroundColor: '#4A321F',
-    backgroundColor: colors.primary,
+    backgroundColor: colors.primaryLight,
     margin: 20,
     padding: 16,
     borderRadius: 25,
