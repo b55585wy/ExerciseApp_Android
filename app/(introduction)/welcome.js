@@ -2,10 +2,10 @@
 import { View, Text, StyleSheet, Image } from 'react-native';
 import { Link } from 'expo-router';
 // 引入logo.svg 图标
-import Logomark from '../assets/icons/logoMark';
+import Logomark from '../../assets/icons/logoMark';
 import ConfirmedButton from '../components/button/confirmedButtion';
-import colors from '../assets/themes/color';
-import typography from '../assets/themes/typography';
+import colors from '../../assets/themes/color';
+import typography from '../../assets/themes/typography';
 // 默认导出WelcomeScreen组件给外部使用
 export default function WelcomeScreen() {
   return (
@@ -36,25 +36,25 @@ export default function WelcomeScreen() {
         {/* Green character illustration */}
         {/* Floating icons */}
         <Image
-          source={require('../assets/images/AI-robot-group.png')}
+          source={require('../../assets/images/AI-robot-group.png')}
           style={styles.airobotImage}
           resizeMode="contain"  // 或使用 "cover" 或 "stretch"
         />
       </View>
 
       {/* Action Buttons */}
-      <Link href="/(auth)/sign-up" asChild>
+      <Link href="/(auth)/sign-up" replace={true} asChild>
         <ConfirmedButton label="Get Started "  ></ConfirmedButton>
       </Link>
 
       {/* Sign In Link */}
       <View style={styles.signInContainer}>
         <Text style={styles.signInText}>Already have an account? </Text>
-        <Link href="/(auth)/sign-in" asChild >
+        <Link href="/(auth)/sign-in" replace={true} asChild>
           <Text style={styles.signInLink}>Sign In</Text>
         </Link>
       </View>
-    </View>   
+    </View>
   );
 }
 

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import typography  from './assets/themes/typography';
-import colors from './assets/themes/color';
+import typography from '../assets/themes/typography';
+import colors from '../assets/themes/color';
 import Animated, {
   useSharedValue,
   useAnimatedStyle,

@@ -1,5 +1,5 @@
 import React from "react";
-import colors from "../../assets/themes/color";
+import colors from "../../../assets/themes/color";
 //引入view组件
 import { Pressable, Text, StyleSheet, View } from "react-native";
 //forwardRef的用法：
