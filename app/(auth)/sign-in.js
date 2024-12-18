@@ -25,10 +25,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { View, Text, TextInput, StyleSheet, Pressable, Animated, Alert } from 'react-native';
 import { Link, router } from 'expo-router';
-import ConfirmedButton from '../../components/button/confirmedButtion';
-import colors from '../../assets/themes/color';
-import Logomark from '../../assets/icons/logoMark';
-import typography  from '../../assets/themes/typography';
+import ConfirmedButton from '../components/button/confirmedButtion';
+import colors from '../assets/themes/color';
+import Logomark from '../assets/icons/logoMark';
+import typography from '../assets/themes/typography';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 export default function SignInScreen() {
   const [email, setEmail] = useState('');
@@ -125,7 +125,7 @@ export default function SignInScreen() {
           ...user,
           lastLoginAt: new Date().toISOString()
         }));
-        router.replace('/modules/main/screens/HomeScreen');
+        router.replace('/(main)');
       } else {
         Alert.alert('Error', 'Invalid email or password');
       }
@@ -209,7 +209,7 @@ export default function SignInScreen() {
         <Animated.View style={[styles.bottomLinks, fadeStyle]}>
           <Text style={styles.bottomText}>
             Don't have an account?{' '}
-            <Link href="./SignUpScreen" replace={true} style={styles.link}>
+            <Link href="/(auth)/sign-up" replace={true} style={styles.link}>
               Sign Up
             </Link>
           </Text>

@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { View, Text, TextInput, StyleSheet, Animated, Alert } from 'react-native';
 import { Link, router } from 'expo-router';
-import ConfirmedButton from '../../components/button/confirmedButtion';
-import colors from '../../assets/themes/color';
-import Logomark from '../../assets/icons/logoMark';
-import typography from '../../assets/themes/typography';
+import ConfirmedButton from '../components/button/confirmedButtion';
+import colors from '../assets/themes/color';
+import Logomark from '../assets/icons/logoMark';
+import typography from '../assets/themes/typography';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function SignUpScreen() {
@@ -114,7 +114,7 @@ export default function SignUpScreen() {
       Alert.alert('Success', 'Registration successful', [
         {
           text: 'OK',
-          onPress: () => router.replace('/SignInScreen')
+          onPress: () => router.replace('/(auth)/sign-in')
         }
       ]);
     } catch (error) {
@@ -228,7 +228,7 @@ export default function SignUpScreen() {
         <Animated.View style={[styles.bottomLinks, fadeStyle]}>
           <Text style={styles.bottomText}>
             Already have an account?{' '}
-            <Link href="./SignInScreen" replace={true} style={styles.link}>
+            <Link href="/(auth)/sign-in" replace={true} style={styles.link}>
               Sign In
             </Link>
           </Text>

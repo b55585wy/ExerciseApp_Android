@@ -1,5 +1,5 @@
 // 创建新文件: app/services/api.js
-
+// 目前还没有用到
 // 开发环境使用本地存储,生产环境使用服务器
 const BASE_URL = __DEV__ ? 'http://localhost:3000/api' : 'https://your-production-api.com/api';
 

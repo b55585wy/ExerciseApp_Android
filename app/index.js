@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Redirect } from 'expo-router';
-import SplashScreen from './modules/SplashScreen';
+import SplashScreen from './SplashScreen';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 //index作为入口文件，重定向到welcome页面
@@ -34,10 +34,10 @@ export default function Index() {
 
   // 根据登录状态重定向
   if (isLoggedIn) {
-    return <Redirect href="./modules/main" />;
+    return <Redirect href="/(main)" />;
   }
 
-  return <Redirect href="./modules/welcome/screens/WelcomeScreen" />;
+  return <Redirect href="/(introduction)/welcome" />;
 }
 
 

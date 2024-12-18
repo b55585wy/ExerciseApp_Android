@@ -3,8 +3,8 @@ import React, { useState } from 'react';
 import { View, Text, TextInput, Image, StyleSheet, Pressable } from 'react-native';
 import { Link } from 'expo-router';
 import Slider from '@react-native-community/slider'; // 导入 Slider（没有导入滑条的时候会静止吗？）
-import InputSlider from '../../../components/InputSlider';
-import ConfirmedButton from '../../../components/button/confirmedButtion';
+import InputSlider from '../components/InputSlider';
+import ConfirmedButton from '../components/button/confirmedButtion';
 export default function InfoScreen() {
   const [fullName, setFullName] = useState('');
   const [weight, setWeight] = useState(65);
