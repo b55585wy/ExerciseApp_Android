@@ -114,7 +114,8 @@ export default function SignUpScreen() {
       Alert.alert('Success', 'Registration successful', [
         {
           text: 'OK',
-          onPress: () => router.replace('/(auth)/sign-in')
+          // onPress: () => router.replace('/(auth)/sign-in')
+          onPress: () => router.replace('/(healthAssessment)/info')
         }
       ]);
     } catch (error) {

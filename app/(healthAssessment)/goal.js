@@ -3,15 +3,15 @@ import { View, Text, StyleSheet, Pressable } from 'react-native';
 import { Link } from 'expo-router';
 
 const goals = [
-  { id: 1, icon: '❤️', text: 'I wanna reduce stress' },
-  { id: 2, icon: '🤖', text: 'I wanna try AI Therapy' },
-  { id: 3, icon: '🚩', text: 'I want to cope with trauma' },
-  { id: 4, icon: '🙂', text: 'I want to be a better person' },
-  { id: 5, icon: '👾', text: 'Just trying out the app, mate!' },
+  { id: 1, icon: '😌', text: 'I want to reduce anxiety and stress' },
+  { id: 2, icon: '🧘', text: 'I want to improve my breathing habits' },
+  { id: 3, icon: '💪', text: 'I want to strengthen my core muscles' },
+  { id: 4, icon: '🎯', text: 'I want to improve my posture' },
+  { id: 5, icon: '🔍', text: 'I want to understand my body better' },
 ];
 
 export default function GoalScreen() {
-  const [selectedGoal, setSelectedGoal] = useState(2); // Default to AI Therapy
+  const [selectedGoal, setSelectedGoal] = useState(1); // Default to anxiety reduction
 
   return (
     <View style={styles.container}>

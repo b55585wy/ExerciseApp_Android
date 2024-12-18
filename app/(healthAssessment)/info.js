@@ -1,4 +1,6 @@
 // app/modules/healthAssessment/screens/InfoScreen.js
+
+//滑条有一些问题。
 import React, { useState } from 'react';
 import { View, Text, TextInput, Image, StyleSheet, Pressable } from 'react-native';
 import { Link } from 'expo-router';
