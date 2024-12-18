@@ -6,6 +6,7 @@ import { View, Text, TextInput, Image, StyleSheet, Pressable } from 'react-nativ
 import { Link } from 'expo-router';
 import Slider from '@react-native-community/slider'; // 导入 Slider（没有导入滑条的时候会静止吗？）
 import InputSlider from '../components/InputSlider';
+import colors from '../../assets/themes/color';
 import ConfirmedButton from '../components/button/confirmedButtion';
 export default function InfoScreen() {
   const [fullName, setFullName] = useState('');
@@ -89,7 +90,7 @@ export default function InfoScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: colors.background.primary,
   },
   header: {
     height: 200,
@@ -135,6 +136,11 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     justifyContent: 'center',
     alignItems: 'center',
+    elevation: 2,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.2,
+    shadowRadius: 1.5,
   },
   editButtonText: {
     fontSize: 16,
