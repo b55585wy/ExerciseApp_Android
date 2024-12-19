@@ -1,11 +1,14 @@
 {
   "expo": {
-    "name": "mySYNC-test",
+    "name": "SYNC",
     "slug": "mySYNC-test",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/Logo.png",
-    "scheme": ["mysync"],
+    "foregroundImageScale": "contain",
+    "scheme": [
+      "mysync"
+    ],
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
@@ -22,7 +25,8 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/Logo.png",
-        "backgroundColor": "#ffffff"
+        "backgroundColor": "#ffffff",
+        "foregroundImageScale": "contain"
       },
       "package": "com.mysync.test",
       "permissions": [
@@ -37,6 +41,12 @@
       "bundler": "metro",
       "output": "static",
       "favicon": "./assets/images/Logo.png"
+    },
+    "splash": {
+      "enabled": false,
+      "image": "./assets/images/Logo.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
     },
     "plugins": [
       [
@@ -53,6 +63,11 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "eas": {
+        "projectId": "b0b171a9-91d3-493c-8e2f-3fe98e0094ae"
+      }
     }
   }
 }

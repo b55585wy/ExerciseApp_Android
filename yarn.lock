@@ -1097,7 +1097,7 @@
     xcode "^3.0.1"
     xml2js "0.6.0"
 
-"@expo/config-plugins@~9.0.0", "@expo/config-plugins@~9.0.10", "@expo/config-plugins@~9.0.12":
+"@expo/config-plugins@^9.0.12", "@expo/config-plugins@~9.0.10", "@expo/config-plugins@~9.0.12":
   version "9.0.12"
   resolved "https://registry.npmmirror.com/@expo/config-plugins/-/config-plugins-9.0.12.tgz#f122b2dca22e135eadf6e73442da3ced0ce8aa0a"
   integrity sha512-/Ko/NM+GzvJyRkq8PITm8ms0KY5v0wmN1OQFYRMkcJqOi3PjlhndW+G6bHpJI9mkQXBaUnHwAiGLqIC3+MQ5Wg==
@@ -1293,7 +1293,7 @@
     postcss "~8.4.32"
     resolve-from "^5.0.0"
 
-"@expo/metro-config@0.19.8", "@expo/metro-config@~0.19.0", "@expo/metro-config@~0.19.8":
+"@expo/metro-config@0.19.8", "@expo/metro-config@^0.19.8", "@expo/metro-config@~0.19.8":
   version "0.19.8"
   resolved "https://registry.npmmirror.com/@expo/metro-config/-/metro-config-0.19.8.tgz#f1ea552b6fa5217093fe364ff5ca78a7e261a28b"
   integrity sha512-dVAOetouQYuOTEJ2zR0OTLNPOH6zPkeEt5fY53TK0Wxi1QmtsmH6vEWg05U4zkSJ6f1aXmQ0Za77R8QxuukESA==
@@ -1383,7 +1383,7 @@
     semver "^7.6.0"
     xml2js "0.6.0"
 
-"@expo/prebuild-config@^8.0.23", "@expo/prebuild-config@~8.0.0":
+"@expo/prebuild-config@^8.0.23":
   version "8.0.23"
   resolved "https://registry.npmmirror.com/@expo/prebuild-config/-/prebuild-config-8.0.23.tgz#2ec6d5464f35d308bdb94ba75b7e6aba0ebb507d"
   integrity sha512-Zf01kFiN2PISmLb0DhIAJh76v3J2oYUKSjiAtGZLOH0HUz59by/qdyU4mGHWdeyRdCCrLUA21Rct2MBykvRMsg==
@@ -4171,7 +4171,7 @@ expo-constants@~17.0.0, expo-constants@~17.0.3:
     "@expo/config" "~10.0.4"
     "@expo/env" "~0.4.0"
 
-expo-dev-client@~5.0.6:
+expo-dev-client@^5.0.6:
   version "5.0.6"
   resolved "https://registry.npmmirror.com/expo-dev-client/-/expo-dev-client-5.0.6.tgz#9c8d10bcb009668737c715a79ce4b32a45937ceb"
   integrity sha512-UMrS21EQ5TMooQgLp+0YrH+UKpxvO+SzkrAdWyVTrjUJ1Qi1yQCbtcErXkYbAdLbItSF3H04fVvd0lzg0KL3Wg==
@@ -4296,7 +4296,7 @@ expo-modules-autolinking@1.11.3:
     require-from-string "^2.0.2"
     resolve-from "^5.0.0"
 
-expo-modules-autolinking@2.0.4:
+expo-modules-autolinking@2.0.4, expo-modules-autolinking@~2.0.0:
   version "2.0.4"
   resolved "https://registry.npmmirror.com/expo-modules-autolinking/-/expo-modules-autolinking-2.0.4.tgz#28fcd12fb0d066a2933cca3bf3b597da0f6b2f2a"
   integrity sha512-e0p+19NhmD50U7s7BV7kWIypWmTNC9n/VlJKlXS05hM/zX7pe6JKmXyb+BFnXJq3SLBalLCUY0tu2gEUF3XeVg==
