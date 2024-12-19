@@ -1,6 +1,7 @@
 import { Tabs } from 'expo-router';
 import { Platform } from 'react-native';
 import { View, Text } from 'react-native';
+import { Link } from 'expo-router';
 // fill={color} color={color} 使用了这个就可以控制颜色显示图标了 这是因为 SVG 在 React Native 中的工作方式有关。让我解释一下：
 // 1. fill 和 color 属性在 SVG 中有不同的作用：
 // fill 直接控制 SVG 图形的填充颜色
@@ -18,28 +19,26 @@ import ChartIcon from '../../assets/icons/Monotone-chart.svg';
 import UserIcon from '../../assets/icons/Monotone-user.svg';
 import colors from '../../assets/themes/color';
 const FloatingButton = () => (
-  <View style={{
-    position: 'absolute',
-    bottom: 46, // 调整位置以对齐 TabBar
-    alignSelf: 'center',
-    backgroundColor: '#A4BE7B', // 使用您的主题色
-    width: 50,
-    height: 50,
-    borderRadius: 25,
-    justifyContent: 'center',
-    alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: {
-      // width: 0,
-      // height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
-    zIndex: 1,
-  }}>
-    <Text style={{ fontSize: 24, color: 'white' }}>+</Text>
-  </View>
+  <Link href="/(device)/linkedDevices" asChild>
+    <View style={{
+      position: 'absolute',
+      bottom: 46,
+      alignSelf: 'center',
+      backgroundColor: '#A4BE7B',
+      width: 50,
+      height: 50,
+      borderRadius: 25,
+      justifyContent: 'center',
+      alignItems: 'center',
+      shadowColor: '#000',
+      shadowOpacity: 0.25,
+      shadowRadius: 3.84,
+      elevation: 5,
+      zIndex: 1,
+    }}>
+      <Text style={{ fontSize: 24, color: 'white' }}>+</Text>
+    </View>
+  </Link>
 );
 
 export default function MainLayout() {
