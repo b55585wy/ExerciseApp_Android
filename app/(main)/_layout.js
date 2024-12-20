@@ -48,7 +48,7 @@ export default function MainLayout() {
         tabBarStyle: {
           backgroundColor: 'white',
           borderTopWidth: 0,  // 移除顶部边框
-          height: 60,         // 设置标签栏高度
+          height: 66,         // 设置标签栏高度
           borderRadius: 30,   // 圆角效果
           margin: 10,         // 四周留白
           position: 'flex',
@@ -62,10 +62,10 @@ export default function MainLayout() {
 
           // iOS 平台特有的阴影效果
           shadowColor: '#000',      // 阴影颜色
-          // shadowOffset: {
-          //   width: 0,              // 水平偏移量
-          //   height: -2,            // 垂直偏移量（负值表示向上）
-          // },
+          shadowOffset: {
+            width: 0,              // 水平偏移量
+            height: -2,            // 垂直偏移量（负值表示向上）
+          },
           shadowOpacity: 0.1,      // 阴影透明度
           shadowRadius: 5,         // 阴影扩散半径
 
@@ -80,7 +80,7 @@ export default function MainLayout() {
         tabBarItemStyle: {
           alignItems: 'center',      // 水平居中对齐
           justifyContent: 'center',  // 垂直居中对齐
-          paddingTop: 11,           // 顶部内边距
+          marginTop: 13,
           height: 44,
           // transform 用于位置变换
           // route.name 用于识别当前标签项
