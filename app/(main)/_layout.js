@@ -1,6 +1,6 @@
 import { Tabs } from 'expo-router';
 import { Platform } from 'react-native';
-import { View, Text } from 'react-native';
+import { View, Text, Pressable } from 'react-native';
 import { Link } from 'expo-router';
 // fill={color} color={color} 使用了这个就可以控制颜色显示图标了 这是因为 SVG 在 React Native 中的工作方式有关。让我解释一下：
 // 1. fill 和 color 属性在 SVG 中有不同的作用：
@@ -20,7 +20,7 @@ import UserIcon from '../../assets/icons/Monotone-user.svg';
 import colors from '../../assets/themes/color';
 const FloatingButton = () => (
   <Link href="/(device)/linkedDevices" asChild>
-    <View style={{
+    <Pressable style={{
       position: 'absolute',
       bottom: 46,
       alignSelf: 'center',
@@ -37,7 +37,7 @@ const FloatingButton = () => (
       zIndex: 1,
     }}>
       <Text style={{ fontSize: 24, color: 'white' }}>+</Text>
-    </View>
+    </Pressable>
   </Link>
 );
 

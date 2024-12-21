@@ -11,7 +11,8 @@ import ConfirmedButton from '../components/button/confirmedButtion';
 export default function InfoScreen() {
   const [fullName, setFullName] = useState('');
   const [weight, setWeight] = useState(65);
-  const [gender, setGender] = useState('');
+  const [height, setHeight] = useState(170);
+  const [gender, setGender] = useState('female');
   const [location, setLocation] = useState('');
 
   return (
@@ -49,27 +50,54 @@ export default function InfoScreen() {
         <Text style={styles.label}>Weight</Text>
         <View style={styles.weightContainer}>
           <Text style={styles.weightValue}>50kg</Text>
-
           <Slider
             style={styles.slider}
-            minimumValue={50}           // 滑块最小值
-            maximumValue={100}          // 滑块最大值
-            step={1}                    // 每次滑动的步长
-            value={weight}              // 当前体重
-            onValueChange={(value) => setWeight(value)} // 更新体重
-            minimumTrackTintColor="#A4BE7B" // 滑块左侧颜色
-            maximumTrackTintColor="#E5E5E5" // 滑块右侧颜色
-            thumbTintColor="#A4BE7B"        // 滑块按钮颜色
+            minimumValue={50}
+            maximumValue={100}
+            step={1}
+            value={weight}
+            onValueChange={(value) => setWeight(value)}
+            minimumTrackTintColor="#A4BE7B"
+            maximumTrackTintColor="#E5E5E5"
+            thumbTintColor="#A4BE7B"
           />
           <Text style={styles.weightValue}>100kg</Text>
         </View>
+        <Text style={styles.currentValue}>{weight} kg</Text>
+
+        <Text style={styles.label}>Height</Text>
+        <View style={styles.weightContainer}>
+          <Text style={styles.weightValue}>150cm</Text>
+          <Slider
+            style={styles.slider}
+            minimumValue={150}
+            maximumValue={200}
+            step={1}
+            value={height}
+            onValueChange={(value) => setHeight(value)}
+            minimumTrackTintColor="#A4BE7B"
+            maximumTrackTintColor="#E5E5E5"
+            thumbTintColor="#A4BE7B"
+          />
+          <Text style={styles.weightValue}>200cm</Text>
+        </View>
+        <Text style={styles.currentValue}>{height} cm</Text>
 
         <Text style={styles.label}>Gender</Text>
-        <Pressable style={styles.selector}>
-          <Text style={styles.selectorIcon}>♀  </Text>
-          <Text style={styles.selectorText}>Female</Text>
-          <Text style={styles.selectorArrow}>▼</Text>
-        </Pressable>
+        <View style={styles.genderContainer}>
+          <Pressable
+            style={[styles.genderButton, gender === 'female' && styles.genderButtonActive]}
+            onPress={() => setGender('female')}
+          >
+            <Text style={styles.genderText}>♀ Female</Text>
+          </Pressable>
+          <Pressable
+            style={[styles.genderButton, gender === 'male' && styles.genderButtonActive]}
+            onPress={() => setGender('male')}
+          >
+            <Text style={styles.genderText}>♂ Male</Text>
+          </Pressable>
+        </View>
 
         <Text style={styles.label}>Location</Text>
         <Pressable style={styles.selector}>
@@ -223,5 +251,31 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 16,
     fontWeight: '600',
+  },
+  currentValue: {
+    textAlign: 'center',
+    fontSize: 16,
+    color: '#4A321F',
+    marginBottom: 20,
+  },
+  genderContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 20,
+  },
+  genderButton: {
+    flex: 1,
+    backgroundColor: '#F5F5F5',
+    padding: 12,
+    borderRadius: 25,
+    alignItems: 'center',
+    marginHorizontal: 5,
+  },
+  genderButtonActive: {
+    backgroundColor: '#A4BE7B',
+  },
+  genderText: {
+    fontSize: 16,
+    color: '#4A321F',
   },
 });

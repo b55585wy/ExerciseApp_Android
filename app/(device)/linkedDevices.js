@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import { 
-  View, 
-  Text, 
-  StyleSheet, 
-  Pressable, 
-  Slider,
+import {
+  View,
+  Text,
+  StyleSheet,
+  Pressable,
   Alert,
   ScrollView,
-  Platform 
+  Platform,
+  PermissionsAndroid
 } from 'react-native';
 // 使用react-native-ble-plx库而不是react-native-ble-manager 后者虽然新手友好，但是社区
 import { BleManager } from 'react-native-ble-plx';
 import colors from '../../assets/themes/color';
-
+import Slider from '@react-native-community/slider';
 const manager = new BleManager();
 
 export default function LinkedDevices() {
@@ -42,8 +42,44 @@ export default function LinkedDevices() {
 
   const requestPermissions = async () => {
     if (Platform.OS === 'android') {
-      const granted = await manager.requestPermissions();
-      return granted === true;
+      const bluetoothScanPermission = await PermissionsAndroid.request(
+        PermissionsAndroid.PERMISSIONS.BLUETOOTH_SCAN,
+        {
+          title: '蓝牙扫描权限',
+          message: '应用需要蓝牙扫描权限来查找设备',
+          buttonNeutral: '稍后询问',
+          buttonNegative: '拒绝',
+          buttonPositive: '允许',
+        }
+      );
+
+      const bluetoothConnectPermission = await PermissionsAndroid.request(
+        PermissionsAndroid.PERMISSIONS.BLUETOOTH_CONNECT,
+        {
+          title: '蓝牙连接权限',
+          message: '应用需要蓝牙连接权限来连接设备',
+          buttonNeutral: '稍后询问',
+          buttonNegative: '拒绝',
+          buttonPositive: '允许',
+        }
+      );
+
+      const locationPermission = await PermissionsAndroid.request(
+        PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+        {
+          title: '位置权限',
+          message: '应用需要位置权限来使用蓝牙功能',
+          buttonNeutral: '稍后询问',
+          buttonNegative: '拒绝',
+          buttonPositive: '允许',
+        }
+      );
+
+      return (
+        bluetoothScanPermission === PermissionsAndroid.RESULTS.GRANTED &&
+        bluetoothConnectPermission === PermissionsAndroid.RESULTS.GRANTED &&
+        locationPermission === PermissionsAndroid.RESULTS.GRANTED
+      );
     }
     return true;
   };
@@ -114,7 +150,7 @@ export default function LinkedDevices() {
 
   const applySettings = async () => {
     const { motor, pump, inhale, exhale } = sliderValues;
-    
+
     // 转换滑块值为命令
     const motorCommand = [0x01, 0x03, Math.round(motor)];
     const pumpCommand = [0x01, 0x04, Math.round(pump)];
@@ -139,7 +175,7 @@ export default function LinkedDevices() {
       </View>
 
       <View style={styles.controlsContainer}>
-        <Pressable 
+        <Pressable
           style={styles.scanButton}
           onPress={startScan}
         >
@@ -155,8 +191,8 @@ export default function LinkedDevices() {
             minimumValue={0}
             maximumValue={255}
             value={sliderValues.motor}
-            onValueChange={(value) => 
-              setSliderValues(prev => ({...prev, motor: value}))
+            onValueChange={(value) =>
+              setSliderValues(prev => ({ ...prev, motor: value }))
             }
           />
         </View>
@@ -168,47 +204,47 @@ export default function LinkedDevices() {
             minimumValue={0}
             maximumValue={255}
             value={sliderValues.pump}
-            onValueChange={(value) => 
-              setSliderValues(prev => ({...prev, pump: value}))
+            onValueChange={(value) =>
+              setSliderValues(prev => ({ ...prev, pump: value }))
             }
           />
         </View>
 
         <View style={styles.sliderContainer}>
-          <Text>吸气时间 ({Math.round(sliderValues.inhale/10)}s)</Text>
+          <Text>吸气时间 ({Math.round(sliderValues.inhale / 10)}s)</Text>
           <Slider
             style={styles.slider}
             minimumValue={0}
             maximumValue={100}
             value={sliderValues.inhale}
-            onValueChange={(value) => 
-              setSliderValues(prev => ({...prev, inhale: value}))
+            onValueChange={(value) =>
+              setSliderValues(prev => ({ ...prev, inhale: value }))
             }
           />
         </View>
 
         <View style={styles.sliderContainer}>
-          <Text>呼气时间 ({Math.round(sliderValues.exhale/10)}s)</Text>
+          <Text>呼气时间 ({Math.round(sliderValues.exhale / 10)}s)</Text>
           <Slider
             style={styles.slider}
             minimumValue={0}
             maximumValue={100}
             value={sliderValues.exhale}
-            onValueChange={(value) => 
-              setSliderValues(prev => ({...prev, exhale: value}))
+            onValueChange={(value) =>
+              setSliderValues(prev => ({ ...prev, exhale: value }))
             }
           />
         </View>
 
         <View style={styles.buttonGroup}>
-          <Pressable 
+          <Pressable
             style={styles.controlButton}
             onPress={() => sendCommand([0x01, 0x01, 0x01])}
           >
             <Text style={styles.buttonText}>开始</Text>
           </Pressable>
 
-          <Pressable 
+          <Pressable
             style={styles.controlButton}
             onPress={() => sendCommand([0x01, 0x00, 0x01])}
           >
@@ -216,7 +252,7 @@ export default function LinkedDevices() {
           </Pressable>
         </View>
 
-        <Pressable 
+        <Pressable
           style={[styles.controlButton, { marginTop: 20 }]}
           onPress={applySettings}
         >

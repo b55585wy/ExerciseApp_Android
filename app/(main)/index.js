@@ -11,7 +11,7 @@ export default function HomeScreen() {
       <ScrollView style={styles.container}>
         {/* Mental Health Metrics */}
         <View style={styles.metricsContainer}>
-          <Text style={styles.sectionTitle}>Mental Health Metrics</Text>
+          <Text style={styles.sectionTitle}>Health Metrics</Text>
           <ScrollView horizontal showsHorizontalScrollIndicator={false}>
             {/* Freud Score Card */}
             <View style={[styles.metricCard, { backgroundColor: colors.primary }]}>
@@ -41,13 +41,13 @@ export default function HomeScreen() {
 
         {/* Mindfulness Tracker */}
         <View style={styles.trackerContainer}>
-          <Text style={styles.sectionTitle}>Mindfulness Tracker</Text>
+          <Text style={styles.sectionTitle}>Exercise Tracker</Text>
           <View style={styles.trackerCard}>
             <View style={styles.trackerInfo}>
               <FontAwesome5 name="clock" size={24} color={colors.primary} />
               <View style={styles.trackerTexts}>
-                <Text style={styles.trackerTitle}>Mindful Hours</Text>
-                <Text style={styles.trackerValue}>2.5h/8h Today</Text>
+                <Text style={styles.trackerTitle}>Hours</Text>
+                <Text style={styles.trackerValue}>25/30mins  Today</Text>
               </View>
             </View>
             <View style={styles.trackerGraph}>
@@ -58,7 +58,7 @@ export default function HomeScreen() {
 
         {/* AI Therapy Chatbot */}
         <View style={styles.chatbotContainer}>
-          <Text style={styles.sectionTitle}>AI Therapy Chatbot</Text>
+          <Text style={styles.sectionTitle}>AI Coach Chatbot</Text>
           <Pressable style={styles.chatbotCard}>
             <View style={styles.chatbotStats}>
               <Text style={styles.conversationCount}>2,541</Text>
